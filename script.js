@@ -170,3 +170,38 @@ addEventListener('keydown', (e) => {
         direction = 'down';
     }   
 });
+
+
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+board.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+board.addEventListener('touchend', (e) => {
+    let touchEndX = e.changedTouches[0].clientX;
+    let touchEndY = e.changedTouches[0].clientY;
+
+    let diffX = touchEndX - touchStartX;
+    let diffY = touchEndY - touchStartY;
+
+    // horizontal swipe
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0 && direction !== 'left') {
+            direction = 'right';
+        } else if (diffX < 0 && direction !== 'right') {
+            direction = 'left';
+        }
+    }
+    // vertical swipe
+    else {
+        if (diffY > 0 && direction !== 'up') {
+            direction = 'down';
+        } else if (diffY < 0 && direction !== 'down') {
+            direction = 'up';
+        }
+    }
+});

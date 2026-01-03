@@ -174,3 +174,8 @@ section .infos{
 .modal .game-over{
     display: none;
 }
+
+
+.board{
+    touch-action: none;
+}
